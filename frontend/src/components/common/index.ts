@@ -7,6 +7,7 @@ import MenuLink from "./MenuLink";
 import UpperBar from "./UpperBar";
 import LanguageSelect from "./LanguageSelect";
 import Tabs from "./Tabs";
+import Footer from "./Footer";
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   UpperBar,
   LanguageSelect,
   Tabs,
+  Footer,
 };

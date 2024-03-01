@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { LocalizationContext } from "./LocalizationProvider";
 import { StoreContext } from "./StoreProvider";
 import { AuthContext } from "./AuthProvider";
+import { StorageContext } from "./StorageProvider";
 
 const useLocalization = () => useContext(LocalizationContext);
 const useTranslation = () => useContext(LocalizationContext).t;
 const useStore = () => useContext(StoreContext);
 const useAuth = () => useContext(AuthContext);
+const useStorage = () => useContext(StorageContext);
 
-export { useLocalization, useTranslation, useStore, useAuth };
+export { useLocalization, useTranslation, useStore, useAuth, useStorage };

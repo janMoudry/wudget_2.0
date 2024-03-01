@@ -4,14 +4,16 @@
     "signup": "Registrovat se",
     "bankId": "Přihlásit se přes BankID",
     "text": "Vítejte v aplikaci Wudget, kde váš finanční přehled dosahuje nových výšin. Přihlášením se přes BankID získáte bezproblémový a bezpečný přístup k vašim financím. Sledujte své výdaje, investice a optimalizujte své finanční plánování pohodlně a efektivně. Začněte nyní a transformujte způsob, jakým spravujete své finance s Wudget.",
-    "home": "Domů"
+    "home": "Domů",
+    "rememberMe": "Zapamatovat si mě"
   },
   "header": {
     "continue": "Pokračovat na přehled"
   },
   "sideMenu": {
     "dashboard": "Úvodní stránka",
-    "overview": "Přehled"
+    "overview": "Přehled",
+    "accounts": "Účty"
   },
   "routes": {
     "dashboard": "Úvodní stránka",

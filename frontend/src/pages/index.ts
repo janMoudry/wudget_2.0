@@ -5,6 +5,7 @@ import DashboarPage from "./DashboardPage";
 import OverviewPage from "./OverviewPage";
 import ProfilePage from "./ProfilePage";
 import SettingsPage from "./SettingsPage";
+import AccountsPage from "./AccountsPage";
 
 export {
   LandingPage,
@@ -14,4 +15,5 @@ export {
   OverviewPage,
   ProfilePage,
   SettingsPage,
+  AccountsPage,
 };

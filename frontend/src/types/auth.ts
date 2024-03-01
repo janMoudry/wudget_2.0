@@ -1,7 +1,7 @@
 export type BeAuthType = {
-  access_token: string;
+  accessToken: string;
   token_type: string;
   expires_in: number;
-  refresh_token: string;
+  refreshToken: string;
   sub: string;
 };

@@ -4,14 +4,16 @@
     "signup": "Sign up",
     "bankId": "login with BankID",
     "text": "Welcome to the Wudget app, where your financial overview reaches new heights. By logging in through BankID, you gain seamless and secure access to your finances. Track your expenses, investments, and optimize your financial planning conveniently and efficiently. Start now and transform the way you manage your finances with Wudget.",
-    "home": "Home"
+    "home": "Home",
+    "rememberMe": "Remember me"
   },
   "header": {
     "continue": "Continue to overview"
   },
   "sideMenu": {
     "dashboard": "Dashboard",
-    "overview": "Overview"
+    "overview": "Overview",
+    "accounts": "Accounts"
   },
   "routes": {
     "dashboard": "Dashboard",

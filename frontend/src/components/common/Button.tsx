@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`px-6 py-3 rounded-lg font-bold transition-all duration-300 ${
         variant === "primary"
           ? "bg-black text-white hover:bg-black-light"
-          : "bg-transparent text-black hover:text-black-light"
+          : "bg-transparent text-black hover:text-black-light hover:shadow-md"
       } ${className}`}
     >
       {children}

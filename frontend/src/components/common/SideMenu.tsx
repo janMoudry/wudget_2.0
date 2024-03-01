@@ -1,4 +1,9 @@
-import { dashboardIcon, menuIcon, overviewIcon } from "@assets/icons";
+import {
+  accountsIcon,
+  dashboardIcon,
+  menuIcon,
+  overviewIcon,
+} from "@assets/icons";
 import { appIcon } from "@assets/images";
 import { MenuLink } from ".";
 import { useTranslation } from "@providers/index";
@@ -24,6 +29,12 @@ const SideMenu = () => {
       to: "/overview",
       text: t("sideMenu.overview"),
       icon: overviewIcon,
+    },
+    {
+      id: 3,
+      to: "/accounts",
+      text: t("sideMenu.accounts"),
+      icon: accountsIcon,
     },
   ];
 

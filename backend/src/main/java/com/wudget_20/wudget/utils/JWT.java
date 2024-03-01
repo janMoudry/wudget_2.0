@@ -2,13 +2,14 @@ package com.wudget_20.wudget.utils;
 
 import com.wudget_20.wudget.model.User;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class JWT {
 
-  public static String generateJWT(User user) {
+  public static String generateJWT(User user, String SECRET) {
     Map<String, Object> claims = new HashMap<>();
 
     claims.put("sub", user.getSub());
@@ -27,9 +28,10 @@ public class JWT {
 
     return Jwts
       .builder()
-      .addClaims(null)
+      .addClaims(claims)
       .setIssuedAt(new Date(System.currentTimeMillis()))
       .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+      .signWith(Keys.hmacShaKeyFor(SECRET.getBytes()))
       .compact();
   }
 }

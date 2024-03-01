@@ -56,6 +56,37 @@ public class BankIdRestApi {
     return body;
   }
 
+  public BankIdResponse refreshTokenExchange(
+    String scope,
+    String refreshToken
+  ) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+    MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+    map.add("grant_type", "refresh_token");
+    map.add("scope", scope);
+    map.add("refresh_token", refreshToken);
+    map.add("client_id", clientId);
+    map.add("client_secret", clientSecret);
+    map.add("redirect_uri", "https://wudget.cz/bankid");
+
+    HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(
+      map,
+      headers
+    );
+
+    String url = "https://oidc.sandbox.bankid.cz/token";
+    ResponseEntity<BankIdResponse> response = restTemplate.postForEntity(
+      url,
+      request,
+      BankIdResponse.class
+    );
+    BankIdResponse body = response.getBody();
+
+    return body;
+  }
+
   public User getUserInfo(String accessToken) {
     HttpHeaders headers = new HttpHeaders();
     headers.setBearerAuth(Objects.requireNonNull(accessToken));

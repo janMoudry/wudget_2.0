@@ -16,4 +16,6 @@ public class BankIdResponse {
   private String expires_in;
 
   private String scope;
+
+  private String refresh_token;
 }

@@ -21,7 +21,7 @@ public class Auth {
   private UUID sub;
 
   @Column(name = "access_token")
-  private String access_token;
+  private String accessToken;
 
   @Column(name = "token_type")
   private String token_type = "Bearer";
@@ -30,16 +30,16 @@ public class Auth {
   private int expires_in;
 
   @Column(name = "refresh_token")
-  private String refresh_token;
+  private String refreshToken;
 
   @Column(name = "created_at")
   private long created_at;
 
   public Auth(UUID sub, String token) {
     this.sub = sub;
-    this.access_token = token;
-    this.expires_in = 3600;
-    this.refresh_token = UUID.randomUUID().toString();
+    this.accessToken = token;
+    this.expires_in = 30;
+    this.refreshToken = UUID.randomUUID().toString();
     this.created_at = System.currentTimeMillis();
   }
 }

@@ -2,19 +2,28 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { authApi } from "@api";
 import { LoginLayout } from "@components/layouts";
-import { TokenResponse } from "@types";
+import { STORAGE_KEYS, TokenResponse } from "@types";
 import { Loader } from "@components/common";
-import { useAuth } from "@providers/index";
+import { useAuth, useStorage } from "@providers/index";
 
 const BankIdRedirectPage = () => {
   const navigate = useNavigate();
   const { saveAuth } = useAuth();
+  const { setItem } = useStorage();
 
   const login = async (accessToken: TokenResponse) => {
     const res = await authApi.login(accessToken);
 
     if (res) {
       saveAuth(res.BankIdResponse, res.BeAuthResponse);
+
+      if (res.Config.rememberMe) {
+        setItem(STORAGE_KEYS.REFRESH_TOKEN, {
+          bankId: res.BankIdResponse.refresh_token,
+          wudget: res.BeAuthResponse.refreshToken,
+        });
+      }
+
       navigate("/user/dashboard");
     }
   };

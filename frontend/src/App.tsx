@@ -5,6 +5,7 @@ import Navigation from "@navigation";
 import { BrowserRouter } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import axios from "axios";
+import StorageProvider from "@providers/StorageProvider";
 
 const App = () => {
   const axiosInitPromise = new Promise((resolve, reject) => {
@@ -31,11 +32,13 @@ const App = () => {
   return (
     <BrowserRouter>
       <StoreProvider>
-        <LocalizationProvider>
-          <AuthProvider>
-            <Navigation />
-          </AuthProvider>
-        </LocalizationProvider>
+        <StorageProvider>
+          <LocalizationProvider>
+            <AuthProvider>
+              <Navigation />
+            </AuthProvider>
+          </LocalizationProvider>
+        </StorageProvider>
       </StoreProvider>
     </BrowserRouter>
   );

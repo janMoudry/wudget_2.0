@@ -9,6 +9,7 @@ export interface BankIdResponse {
   id_token: string;
   token_type: string;
   scope: string;
+  refresh_token: string;
 }
 
 export interface UserInfo {
@@ -30,4 +31,8 @@ export interface UserInfo {
       verification_process: string;
     };
   };
+}
+
+export interface LoginConfigResponse {
+  rememberMe: boolean;
 }

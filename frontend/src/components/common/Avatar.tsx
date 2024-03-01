@@ -1,6 +1,7 @@
+import { authApi } from "@api";
 import { arrowDownIcon, profileIcon } from "@assets/icons";
 import { useBooleanState } from "@hooks";
-import { useStore, useTranslation } from "@providers/index";
+import { useAuth, useStore, useTranslation } from "@providers/index";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,10 +14,24 @@ const Avatar: React.FC<AvatarProps> = ({ fullName }) => {
   const navigate = useNavigate();
   const { clearEntireStore } = useStore();
   const t = useTranslation();
+  const { user } = useAuth();
 
   const handleNavigate = (path: string) => {
     navigate("/user" + path);
     switchOpen();
+  };
+
+  const logout = async () => {
+    try {
+      await authApi.logout({
+        clientId: user?.sub || "",
+      });
+
+      clearEntireStore();
+      window.location.href = "/";
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -73,10 +88,7 @@ const Avatar: React.FC<AvatarProps> = ({ fullName }) => {
         <div className="flex flex-col gap-2 items-center justify-center h-10 hover:bg-gray-100 cursor-pointer">
           <p
             className="text-primary-500 font-thin text-smd px-2 cursor-pointer"
-            onClick={() => {
-              clearEntireStore();
-              window.location.href = "/";
-            }}
+            onClick={logout}
           >
             {t("functions.logout")}
           </p>

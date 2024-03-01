@@ -40,7 +40,6 @@ const StoreProvider = ({ children }: StoreProviderProps) => {
 
   const clearEntireStore = () => {
     sessionStorage.clear();
-    window.location.reload();
   };
 
   return (

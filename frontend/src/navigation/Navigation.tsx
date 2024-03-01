@@ -1,4 +1,5 @@
 import {
+  AccountsPage,
   BankIdRedirectPage,
   DashboarPage,
   LandingPage,
@@ -17,6 +18,8 @@ const Navigation = () => (
 
     <Route path="user/dashboard" element={<DashboarPage />} />
     <Route path="/user/overview" element={<OverviewPage />} />
+    <Route path="/user/accounts" element={<AccountsPage />} />
+
     <Route path="/user/profile" element={<ProfilePage />} />
     <Route path="/user/settings" element={<SettingsPage />} />
   </Routes>

@@ -1,13 +1,24 @@
 import { authApi } from "@api";
 import { appIcon } from "@assets/images";
+import { Button } from "@components/common";
+import { Checkbox } from "@components/inputs";
 import { LoginLayout } from "@components/layouts";
 import { useTranslation } from "@providers/index";
+import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
   const t = useTranslation();
 
-  const handleNavigateToBankId = async () => {
-    const redirectUrl = await authApi.getRedirectUri();
+  const { register, handleSubmit } = useForm<{
+    rememberMe: boolean;
+  }>({
+    defaultValues: {
+      rememberMe: true,
+    },
+  });
+
+  const handleNavigateToBankId = async (rememberMe: boolean) => {
+    const redirectUrl = await authApi.getRedirectUri(rememberMe);
 
     window.location.href = redirectUrl.toString();
   };
@@ -19,16 +30,22 @@ const LoginPage = () => {
         <p className="text-center text-gray-600 w-full px-5 sm:w-1/3 sm:p-0">
           {t("login.text")}
         </p>
-        <div className="mt-10">
-          <button
-            type="button"
-            data-testid="login-button"
-            className="px-6 py-3 rounded-lg font-bold transition-all duration-300 bg-black text-white hover:bg-black-light"
-            onClick={handleNavigateToBankId}
-          >
+        <form
+          className="mt-10"
+          onSubmit={handleSubmit((data) => {
+            handleNavigateToBankId(data.rememberMe);
+          })}
+        >
+          <Button variant="primary" type="submit" data-testid="login-button">
             {t("login.bankId")}
-          </button>
-        </div>
+          </Button>
+          <Checkbox
+            className="mt-5"
+            label={t("login.rememberMe")}
+            register={register}
+            registerName="rememberMe"
+          />
+        </form>
       </div>
     </LoginLayout>
   );

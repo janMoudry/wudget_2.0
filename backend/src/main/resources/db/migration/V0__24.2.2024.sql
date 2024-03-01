@@ -11,14 +11,15 @@ CREATE TABLE if not exists users (
   phone_number VARCHAR(255),
   updated_at BIGINT,
   name VARCHAR(255),
-  email VARCHAR(255)
+  email VARCHAR(255),
+  scope VARCHAR(2048)
 );
 
 CREATE TABLE if not exists auth (
   sub UUID PRIMARY KEY,
-  access_token VARCHAR(255),
+  access_token VARCHAR(2048),
   token_type VARCHAR(255),
   expires_in INT,
-  refresh_token VARCHAR(255),
+  refresh_token VARCHAR(2048),
   created_at BIGINT
 );

@@ -17,6 +17,8 @@ public class UserService {
   public ResponseEntity<User> getUserInfo(UUID user_id) {
     Optional<User> user = userRepository.findBySub(user_id);
 
+    System.out.println("User: ");
+
     if (user.isPresent()) {
       return ResponseEntity.ok(user.get());
     } else {
