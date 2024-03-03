@@ -31,7 +31,7 @@ const Checkbox = <T extends FieldValues>({
         {...register(registerName, registerProps)}
         disabled={isDisabled}
       />
-      <label htmlFor={registerName} className="ml-2 text-lg">
+      <label htmlFor={registerName} className="ml-2 text-md">
         {label}
       </label>
       {error && <span className="text-xs text-red-500">{error.message}</span>}

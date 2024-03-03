@@ -34,6 +34,8 @@ export default {
         15: "3.75rem",
 
         "1px": "1px",
+
+        "svh-header": "calc(100vh - 80px)",
       },
     },
   },

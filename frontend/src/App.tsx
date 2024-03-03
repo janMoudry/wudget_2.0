@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import axios from "axios";
 import StorageProvider from "@providers/StorageProvider";
+import CookieConsent from "react-cookie-consent";
 
 const App = () => {
   const axiosInitPromise = new Promise((resolve, reject) => {
@@ -40,6 +41,31 @@ const App = () => {
           </LocalizationProvider>
         </StorageProvider>
       </StoreProvider>
+
+      <CookieConsent
+        location="bottom"
+        buttonText="Rozumím"
+        cookieName="cookieConsent"
+        style={{
+          background: "#2B373B",
+          color: "#FFF",
+          fontSize: "13px",
+          fontWeight: "bold",
+        }}
+        buttonStyle={{
+          color: "#4e503b",
+          fontSize: "13px",
+          fontWeight: "bold",
+          background: "#FFF",
+          borderRadius: "5px",
+        }}
+        expires={150}
+        onAccept={() => {
+          console.log("onAccept");
+        }}
+      >
+        Tohle je zatím jen testovací text pro cookie consent
+      </CookieConsent>
     </BrowserRouter>
   );
 };

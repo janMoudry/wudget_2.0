@@ -1,5 +1,5 @@
 import { authApi } from "@api";
-import { appIcon } from "@assets/images";
+import { appLogo } from "@assets/icons";
 import { Button } from "@components/common";
 import { Checkbox } from "@components/inputs";
 import { LoginLayout } from "@components/layouts";
@@ -26,7 +26,7 @@ const LoginPage = () => {
   return (
     <LoginLayout>
       <div className="flex flex-col justify-center items-center w-full h-full">
-        <img src={appIcon} alt="promo icon" className="" />
+        <img src={appLogo} alt="promo icon" className="" />
         <p className="text-center text-gray-600 w-full px-5 sm:w-1/3 sm:p-0">
           {t("login.text")}
         </p>
@@ -46,6 +46,33 @@ const LoginPage = () => {
             registerName="rememberMe"
           />
         </form>
+        <div
+          className="flex flex-col justify-center items-center w-full mt-5 absolute bottom-5"
+          data-testid="privacy-policy"
+        >
+          <p
+            className="text-center text-gray-600 mt-5"
+            data-testid="privacy-policy"
+          >
+            Přihlášením souhlasíte s našimi:{" "}
+          </p>
+          <a
+            href="https://www.wudget.cz/public/privacy"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            {t("login.privacyLink")}
+          </a>
+          <a
+            href="https://www.wudget.cz/public/terms"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            {t("login.termsLink")}
+          </a>
+        </div>
       </div>
     </LoginLayout>
   );

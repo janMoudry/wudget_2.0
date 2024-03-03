@@ -5,3 +5,83 @@
 /* * {
   outline: 1px dotted black;
 } */
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.small-to-big {
+  animation: smallToBig 0.3s ease-in-out forwards;
+}
+
+@keyframes smallToBig {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.background-zoom-out {
+  animation: backgroundZoomOut 0.5s ease-in-out forwards;
+  background-position: center;
+
+  @media screen and (max-width: 768px) {
+    animation: backgroundZoomOutMobile 0.5s ease-in-out forwards;
+    background-size: cover;
+  }
+}
+
+@keyframes backgroundZoomOut {
+  from {
+    background-size: 300%;
+  }
+  to {
+    background-size: 100%;
+  }
+}
+
+@keyframes backgroundZoomOutMobile {
+  from {
+    background-position: center;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+.left-to-center {
+  animation: leftToCenter 0.5s ease-in-out forwards;
+}
+
+@keyframes leftToCenter {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.right-to-center {
+  animation: rightToCenter 0.5s ease-in-out forwards;
+}
+
+@keyframes rightToCenter {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

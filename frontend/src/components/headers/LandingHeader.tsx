@@ -14,11 +14,11 @@ const LandingHeader = () => {
   };
 
   return (
-    <header className="flex justify-center sm:justify-between items-center gap-5 w-full bg-white text-black fixed top-0 left-0 px-1 sm:px-10">
+    <header className="flex justify-center sm:justify-between items-center gap-5 w-full bg-transparent text-black relative top-0 left-0 px-1 sm:px-5">
       <img
         src={appIcon}
         alt="icona wudget"
-        className="w-40"
+        className="w-40 cursor-pointer"
         onClick={() => handleNavigate("/")}
       />
 
