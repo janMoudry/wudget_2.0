@@ -25,6 +25,13 @@ const LandingLayout: FC<LandingLayoutProps> = ({ children }) => {
 
   const calculateBackgroundSize = () => {
     const zoomFactor = 1 + scrollPosition * 0.002;
+
+    const viewportAspectRatio = window.innerWidth / window.innerHeight;
+
+    if (viewportAspectRatio < 1.5) {
+      return "cover";
+    }
+
     const backgroundSize = `${zoomFactor * 100}%`;
     return backgroundSize > "300%" ? "300%" : backgroundSize;
   };
