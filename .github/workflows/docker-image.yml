@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "production" ]
+  pull_request:
+    branches: [ "production" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image - fe
+      run: docker build . --file ./frontend/Dockerfile --tag wudget_2.0-fe:$(date +%s)
+    - name: Build the Docker image - be
+      run: docker build . --file ./backend/Dockerfile --tag wudget_2.0-be:$(date +%s)
