@@ -25,6 +25,6 @@ jobs:
       - name: migrate database
         run: |
           cd backend
-          mvn flyway:migrate -Dflyway.user=wudgetAdmin -Dflyway.password=jasperrepsaj333
+          mvn flyway:migrate -Dflyway.user=wudgetAdmin -Dflyway.password=jasperrepsaj333 -Dflyway.url=jdbc:postgresql://localhost:5432/wudget_2
       - name: Build with Maven
         run: mvn -B package --file backend/pom.xml
