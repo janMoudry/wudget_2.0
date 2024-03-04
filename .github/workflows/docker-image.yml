@@ -4,8 +4,6 @@ run-name: Build and push Docker images
 on:
   push:
     branches: ["production"]
-  pull_request:
-    branches: ["production"]
 
 jobs:
   build-and-push:
@@ -26,7 +24,7 @@ jobs:
       - name: Build and push Docker image - fe
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./frontend
           file: ./frontend/Dockerfile
           push: true
           tags: yourusername/wudget_2.0-fe:latest
@@ -34,7 +32,7 @@ jobs:
       - name: Build and push Docker image - be
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./backend
           file: ./backend/Dockerfile
           push: true
           tags: yourusername/wudget_2.0-be:latest
