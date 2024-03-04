@@ -22,7 +22,7 @@ jobs:
           CREATE USER wudgetAdmin WITH PASSWORD 'jasperrepsaj333';
           ALTER USER wudgetAdmin WITH SUPERUSER;
           CREATE DATABASE wudget_2;
-          GRANT ALL PRIVILEGES ON DATABASE wudget_2 TO wudgetAdmin;
+          GRANT ALL PRIVILEGES ON DATABASE wudget_2 TO wudgetAdmin;"
       - name: migrate database
         run: |
           cd backend
