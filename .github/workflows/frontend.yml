@@ -3,11 +3,11 @@ name: Frontend CI
 on:
   push:
     paths:
-      - 'frontend/**'
+      - '../../frontend/**'
     branches: [ production, dev ]
   pull_request:
     paths:
-      - 'frontend/**'
+      - '../../frontend/**'
     branches: [ production, dev ]
 
 jobs:
