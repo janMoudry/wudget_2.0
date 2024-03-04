@@ -9,7 +9,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "clean-modules": "rm -rf node_modules && rm -f package-lock.json && npm install"
+    "clean-modules": "rm -rf node_modules && rm -f package-lock.json && npm install",
+    "tests": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@types/echarts": "^4.9.20",
