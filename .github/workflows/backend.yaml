@@ -19,7 +19,7 @@ jobs:
           sudo -u postgres psql -c "
           CREATE DATABASE wudget_2;"
           sudo -u postgres psql -c "
-          CREATE USER wudgetAdmin WITH PASSWORD 'jasperrepsaj333';
+          CREATE USER wudgetAdmin WITH PASSWORD 'jhn55yEp';
           ALTER USER wudgetAdmin WITH SUPERUSER;
           GRANT ALL PRIVILEGES ON DATABASE wudget_2 TO wudgetAdmin;"
       - name: migrate database
