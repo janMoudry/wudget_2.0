@@ -11,5 +11,21 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Create Database
+        run: |
+          sudo apt-get update
+          sudo apt-get install postgresql
+          sudo service postgresql start
+      - name: Create correct databse with superuser
+        run: |
+          sudo -u postgres psql -c "
+          CREATE USER wudgetAdmin WITH PASSWORD 'jasperrepsaj333';
+          ALTER USER wudgetAdmin WITH SUPERUSER;
+          CREATE DATABASE wudget_2;
+          GRANT ALL PRIVILEGES ON DATABASE wudget_2 TO wudgetAdmin;
+      - name: migrate database
+        run: |
+          cd backend
+          mvn flyway:migrate
       - name: Build with Maven
         run: mvn -B package --file backend/pom.xml
