@@ -22,15 +22,9 @@ jobs:
           CREATE USER wudgetAdmin WITH PASSWORD 'jasperrepsaj333';
           ALTER USER wudgetAdmin WITH SUPERUSER;
           GRANT ALL PRIVILEGES ON DATABASE wudget_2 TO wudgetAdmin;"
-
-      - name: Allow md5 password authentication
-        run: |
-          sudo sed -i 's/local   all             all                                     peer/local   all             all                                     md5/' /etc/postgresql/*/main/pg_hba.conf
-          sudo service postgresql restart
-
       - name: migrate database
         run: |
-          cd backend
-          mvn flyway:migrate -Dflyway.user=wudgetAdmin -Dflyway.password=jasperrepsaj333 -Dflyway.url=jdbc:postgresql://localhost:5432/wudget_2
+          cd ./backend
+          mvn flyway:migrate
       - name: Build with Maven
         run: mvn -B package --file backend/pom.xml
