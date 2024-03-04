@@ -8,6 +8,7 @@ import UpperBar from "./UpperBar";
 import LanguageSelect from "./LanguageSelect";
 import Tabs from "./Tabs";
 import Footer from "./Footer";
+import Carousel from "./Carousel";
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   LanguageSelect,
   Tabs,
   Footer,
+  Carousel,
 };

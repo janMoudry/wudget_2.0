@@ -6,7 +6,7 @@ import {
   monitoringSticker2,
   teamWorkSticker,
 } from "@assets/stickers";
-import { Button } from "@components/common";
+import { Button, Carousel } from "@components/common";
 import { LandingLayout } from "@components/layouts";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -164,6 +164,18 @@ const LandingPage = () => {
           alt="promo"
           className="w-full sm:w-1/3"
         />
+      </section>
+      <section
+        className="flex flex-col items-center justify-center w-full px-5 mt-20"
+        data-testid="landing-supported-banks"
+      >
+        <h2
+          className="text-3xl text-center font-bold mb-5"
+          data-testid="landing-supported-banks"
+        >
+          Podporované banky
+        </h2>
+        <Carousel />
       </section>
     </LandingLayout>
   );

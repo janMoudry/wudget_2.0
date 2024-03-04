@@ -85,3 +85,20 @@
     transform: translateX(0);
   }
 }
+
+.carousel-auto-play {
+  animation: carouselAutoPlay 12s infinite linear;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes carouselAutoPlay {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
