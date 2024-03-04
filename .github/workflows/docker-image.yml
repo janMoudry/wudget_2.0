@@ -27,7 +27,8 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags: yourusername/wudget_2.0-fe:latest
+          time: true
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/wudget_2.0-fe:latest
 
       - name: Build and push Docker image - be
         uses: docker/build-push-action@v2
@@ -35,4 +36,5 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: yourusername/wudget_2.0-be:latest
+          time: true
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/wudget_2.0-be:latest
