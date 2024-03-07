@@ -27,8 +27,7 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          time: true
-          tags: ${{secrets.DOCKER_HUB_USERNAME}}/wudget_2.0/frontend:${{ github.sha }}
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/wudget_2.0:frontend-${{ github.sha }}
 
       - name: Build and push Docker image - be
         uses: docker/build-push-action@v2
@@ -36,5 +35,4 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          time: true
-          tags: ${{secrets.DOCKER_HUB_USERNAME}}/wudget_2.0/backend:${{ github.sha }}
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/wudget_2.0:backend-${{ github.sha }}
