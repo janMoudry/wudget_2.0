@@ -18,6 +18,7 @@ const LandingLayout: FC<LandingLayoutProps> = ({ children }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
