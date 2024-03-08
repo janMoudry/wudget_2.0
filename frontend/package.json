@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --port 3000 --open --host --mode prod",
+    "start": "vite --port 3000 --host --mode prod",
     "start:dev": "vite --port 3000 --open --host --mode dev",
     "start:prod": "vite --port 3000 --open --host --mode prod",
     "build": "tsc && vite build",

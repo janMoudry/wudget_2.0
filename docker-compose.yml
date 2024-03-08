@@ -1,0 +1,46 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/package.json:/app/package.json
+    networks:
+      - wudget
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/wudget_2.0
+      - SPRING_DATASOURCE_USERNAME=wudgetAdmin
+      - SPRING_DATASOURCE_PASSWORD=jasperrepsaj333
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+    networks:
+      - wudget
+
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=wudgetAdmin
+      - POSTGRES_PASSWORD=jasperrepsaj333
+      - POSTGRES_DB=wudget_2.0
+    networks:
+      - wudget
+
+networks:
+  wudget:
