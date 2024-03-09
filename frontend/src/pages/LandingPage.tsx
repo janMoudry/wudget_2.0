@@ -6,7 +6,9 @@ import {
   monitoringSticker2,
   teamWorkSticker,
 } from "@assets/stickers";
-import { Button, Carousel } from "@components/common";
+import { Button, 
+  // Carousel 
+} from "@components/common";
 import { LandingLayout } from "@components/layouts";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -175,7 +177,8 @@ const LandingPage = () => {
         >
           Podporované banky
         </h2>
-        <Carousel />
+        {/* <Carousel /> */}
+        Zatím žádné banky nejsou podporovány
       </section>
     </LandingLayout>
   );
