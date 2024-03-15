@@ -89,9 +89,9 @@
 .carousel-auto-play {
   animation: carouselAutoPlay 12s infinite linear;
 
-  &:hover {
+  /* &:hover {
     animation-play-state: paused;
-  }
+  } */
 }
 
 @keyframes carouselAutoPlay {
@@ -100,5 +100,33 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+.modal-show {
+  animation: backdropBlur 0.5s forwards;
+}
+
+@keyframes backdropBlur {
+  from {
+    backdrop-filter: blur(0);
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+.opacity-show {
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

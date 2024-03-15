@@ -1,3 +1,5 @@
+import tailwindcssAnimated from "tailwindcss-animated";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -37,8 +39,13 @@ export default {
 
         "svh-header": "calc(100vh - 80px)",
       },
+      animation: {
+        stop: "animation-stop 0.1s forwards",
+      },
     },
   },
 
-  plugins: [],
+  // ...
+
+  plugins: [tailwindcssAnimated],
 };

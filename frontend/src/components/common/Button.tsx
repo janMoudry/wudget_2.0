@@ -1,6 +1,10 @@
+import { Loader } from ".";
+
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   variant: "primary" | "secondary";
   type: "button" | "submit" | "reset";
+  loading?: boolean;
+  loadingText?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -8,6 +12,8 @@ const Button: React.FC<ButtonProps> = ({
   children,
   type,
   className,
+  loading,
+  loadingText,
   ...props
 }) => {
   return (
@@ -19,8 +25,16 @@ const Button: React.FC<ButtonProps> = ({
           ? "bg-black text-white hover:bg-black-light"
           : "bg-transparent text-black hover:text-black-light hover:shadow-md"
       } ${className}`}
+      disabled={props.disabled || loading}
     >
-      {children}
+      {loading ? (
+        <div className="w-full h-full flex justify-center items-center">
+          <p>{loadingText ? loadingText : "Načítání..."}</p>
+          <Loader width="100%" height="100%" />
+        </div>
+      ) : (
+        children
+      )}
     </button>
   );
 };

@@ -6,16 +6,21 @@ import {
   monitoringSticker2,
   teamWorkSticker,
 } from "@assets/stickers";
-import { Button, 
-  // Carousel 
-} from "@components/common";
+import { Button, Carousel } from "@components/common";
 import { LandingLayout } from "@components/layouts";
-import { useEffect, useState } from "react";
+import { useIsVisible } from "@hooks";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [isLoginIconShown, setIsLoginIconShown] = useState(false);
+
+  const section1Ref = useRef(null);
+  const section2Ref = useRef(null);
+
+  const isVisible1 = useIsVisible(section1Ref);
+  const isVisible2 = useIsVisible(section2Ref);
 
   const handleStart = () => {
     navigate("/login");
@@ -49,11 +54,11 @@ const LandingPage = () => {
       )}
       {/* Main section */}
       <section className="flex relative flex-col items-center justify-start gap-8 w-full px-5 h-svh">
-        <h1 className="text-4xl text-center font-bold left-to-center">
+        <h1 className="text-4xl text-center font-bold animate-fade-up">
           Vítejte na <span className="text-primary">Wudget</span>
         </h1>
         <h2
-          className="text-center text-2xl text-gray-600 right-to-center"
+          className="text-center text-2xl text-gray-600 animate-fade-up animate-delay-[500ms]"
           data-testid="landing-subtitle"
         >
           Spravujte své finance jednoduše a efektivně na jednom místě
@@ -61,39 +66,42 @@ const LandingPage = () => {
         <img
           src={teamWorkSticker}
           alt="promo"
-          className="sm:w-auto sm:h-1/2 w-full small-to-big scale-0"
-          style={{
-            animationDelay: "0.8s",
-          }}
+          className="sm:w-auto sm:h-1/2 w-full h-1/3 animate-fade-up animate-delay-[1000ms]"
         />
         <Button
           variant="primary"
           type="button"
           onClick={handleStart}
-          className="fade-in opacity-0"
-          style={{
-            animationDelay: "1.4s",
-          }}
+          className="animate-fade-up animate-delay-[1500ms]"
         >
           Začít s Wudget
         </Button>
       </section>
       <section
-        className="flex flex-col items-center justify-start gap-5 w-full px-5"
+        className={`flex flex-col min-h-[50svh] items-center justify-start gap-5 w-full px-5`}
         data-testid="landing-why-wudget"
+        ref={section1Ref}
       >
         <div
           className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full"
           data-testid="landing-why-wudget-list"
         >
-          <div className="flex h-1/3 flex-col items-center justify-center gap-5 shadow-md shadow-gray-300 rounded-md p-5 bg-white">
+          <div
+            className={`flex h-1/3 flex-col items-center justify-center gap-5 shadow-md shadow-gray-300 rounded-md p-5 bg-white ${
+              isVisible1 ? "animate-jump-in animate-delay-0" : ""
+            }`}
+          >
             <h2 className="text-2xl text-center font-bold">Jednoduché</h2>
             <img src={dataAnalysisSticker} alt="promo" className="w-1/2" />
             <p className="text-center text-gray-600">
               Jednoduché a přehledné zobrazení ve formě grafů a tabulek
             </p>
           </div>
-          <div className="flex h-1/3 flex-col items-center justify-center gap-5 shadow-md shadow-gray-300 rounded-md p-5 bg-white">
+          <div
+            className={`flex h-1/3 flex-col items-center justify-center gap-5 shadow-md shadow-gray-300 rounded-md p-5 bg-white ${
+              isVisible1 ? "animate-jump-in animate-delay-[500ms]" : ""
+            }`}
+          >
             <h2 className="text-2xl text-center font-bold">
               Vše na jednom místě
             </h2>
@@ -102,7 +110,11 @@ const LandingPage = () => {
               Všechny důležité informace o vašich financích na jednom místě
             </p>
           </div>
-          <div className="flex h-1/3 flex-col items-center justify-center gap-5 shadow-md shadow-gray-300 rounded-md p-5 bg-white">
+          <div
+            className={`flex h-1/3 flex-col items-center justify-center gap-5 shadow-md shadow-gray-300 rounded-md p-5 bg-white ${
+              isVisible1 ? "animate-jump-in animate-delay-[1000ms]" : ""
+            }`}
+          >
             <h2 className="text-2xl text-center font-bold">Odborná pomoc</h2>
             <img src={monitoringSticker2} alt="promo" className="w-1/2" />
             <p className="text-center text-gray-600">
@@ -112,20 +124,27 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className="flex items-center justify-center flex-col sm:flex-row w-full px-5 mt-20">
+      <section
+        ref={section2Ref}
+        className={`flex items-center justify-center min-h-[50svh] flex-col sm:flex-row w-full px-5 mt-20`}
+      >
         <div
           className="flex flex-col items-center justify-center w-full sm:w-2/3"
           data-testid="landing-what-wudget"
         >
           <h2
-            className="text-3xl text-center font-bold"
+            className={`text-3xl text-center font-bold
+            ${isVisible2 ? "animate-fade-right" : ""}
+            `}
             data-testid="landing-what-wudget"
           >
             <span className="text-primary">Wudget</span> vám pomůže s vašimi
             financemi
           </h2>
           <p
-            className="text-center text-gray-600"
+            className={`text-center text-gray-600  
+            ${isVisible2 ? "animate-fade-right" : ""}
+            `}
             data-testid="landing-what-wudget-text"
           >
             Wudget vám pomůže s plánováním vašich financí, investicemi a mnohem
@@ -136,35 +155,45 @@ const LandingPage = () => {
             data-testid="landing-what-wudget-list"
           >
             <li
-              className="text-center text-gray-600 before:content-['✔️'] flex gap-2"
+              className={`text-center text-gray-600 before:content-['✔️'] flex gap-2 ${
+                isVisible2 ? "animate-fade-up animate-delay-[200ms]" : ""
+              }`}
               data-testid="landing-what-wudget-list"
             >
               Povědomí o všech předplaných
             </li>
             <li
-              className="text-center text-gray-600 before:content-['✔️'] flex gap-2"
+              className={`text-center text-gray-600 before:content-['✔️'] flex gap-2 ${
+                isVisible2 ? "animate-fade-up animate-delay-[500ms]" : ""
+              }`}
               data-testid="landing-what-wudget-list"
             >
               Přehled o vašich investicích
             </li>
             <li
-              className="text-center text-gray-600 before:content-['✔️'] flex gap-2"
+              className={`text-center text-gray-600 before:content-['✔️'] flex gap-2 ${
+                isVisible2 ? "animate-fade-up animate-delay-[800ms]" : ""
+              }`}
               data-testid="landing-what-wudget-list"
             >
               Odborná pomoc na jedno kliknutí
             </li>
             <li
-              className="text-center text-gray-600 before:content-['✔️'] flex gap-2"
+              className={`text-center text-gray-600 before:content-['✔️'] flex gap-2 ${
+                isVisible2 ? "animate-fade-up animate-delay-[1100ms]" : ""
+              }`}
               data-testid="landing-what-wudget-list"
             >
-              Stáhnutí výpisů pro obyčejné lidi
+              Stáhnutí výpisů z bankovních účtů
             </li>
           </ul>
         </div>
         <img
           src={businessIdeaSticker2}
           alt="promo"
-          className="w-full sm:w-1/3"
+          className={`w-full sm:w-1/3
+          ${isVisible2 ? "animate-fade-left" : ""}
+          `}
         />
       </section>
       <section
@@ -177,7 +206,7 @@ const LandingPage = () => {
         >
           Podporované banky
         </h2>
-        {/* <Carousel /> */}
+        <Carousel />
         Zatím žádné banky nejsou podporovány
       </section>
     </LandingLayout>

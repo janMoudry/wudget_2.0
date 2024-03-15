@@ -6,22 +6,11 @@ interface LoginLayoutProps {
 }
 
 const LoginLayout: React.FC<LoginLayoutProps> = ({ children }) => {
-  const calculateBackgroundSize = () => {
-    const viewportAspectRatio = window.innerWidth / window.innerHeight;
-
-    if (viewportAspectRatio < 1.5) {
-      return "cover";
-    }
-
-    return "cover";
-  };
-
   return (
     <div
-      className="flex justify-center items-center w-vw h-svh"
+      className="flex justify-center items-center w-vw h-svh bg-no-repeat bg-cover bg-center bg-fixed z-[-1]"
       style={{
         backgroundImage: `url(${landingPageBackground})`,
-        backgroundSize: calculateBackgroundSize(),
       }}
     >
       <CommonHeader />

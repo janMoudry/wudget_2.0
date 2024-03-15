@@ -3,11 +3,21 @@ import { appLogo } from "@assets/icons";
 import { Button } from "@components/common";
 import { Checkbox } from "@components/inputs";
 import { LoginLayout } from "@components/layouts";
+import { InfoModal } from "@components/modals";
+import { useModal } from "@hooks";
 import { useTranslation } from "@providers/index";
 import { useForm } from "react-hook-form";
 
+const isDemo = true;
+
 const LoginPage = () => {
   const t = useTranslation();
+  const { trigger, render } = useModal({
+    component: InfoModal,
+    defaultValues: {
+      title: "",
+    },
+  });
 
   const { register, handleSubmit } = useForm<{
     rememberMe: boolean;
@@ -18,6 +28,12 @@ const LoginPage = () => {
   });
 
   const handleNavigateToBankId = async (rememberMe: boolean) => {
+    if (isDemo) {
+      trigger();
+
+      return;
+    }
+
     const redirectUrl = await authApi.getRedirectUri(rememberMe);
 
     window.location.href = redirectUrl.toString();
@@ -74,6 +90,8 @@ const LoginPage = () => {
           </a>
         </div>
       </div>
+
+      {render()}
     </LoginLayout>
   );
 };

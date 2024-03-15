@@ -53,6 +53,27 @@ public class EmailService {
     }
   }
 
+  public void subscribe(String email, String lang) {
+    String subject;
+
+    switch (lang) {
+      case "en_ENG":
+        subject = "Subscribed";
+        break;
+      case "cs_CZ":
+        subject = "Přihlášen";
+        break;
+      default:
+        subject = "Subscribed";
+    }
+
+    String htmlContent = loadHtmlTemplate("subscribe", lang);
+
+    if (htmlContent != null) {
+      emailSender.sendEmail(email, subject, htmlContent, true, lang);
+    }
+  }
+
   private String loadHtmlTemplate(String templateName, String lang) {
     String basePath = "email-templates/"; // Path relative to src/main/resources
 

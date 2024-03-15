@@ -27,7 +27,8 @@ public class SecurityConfig {
             "/api/auth/redirectUri",
             "/api/auth/login",
             "/api/auth/loginWithRefreshToken",
-            "/test/sendEmail"
+            "/test/sendEmail",
+            "/api/test/subscribe"
           )
           .permitAll()
           .anyRequest()

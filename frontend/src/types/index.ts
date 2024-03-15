@@ -8,6 +8,7 @@ import {
 import { MenuLinkType } from "./common";
 import { BeAuthType } from "./auth";
 import { STORAGE_KEYS, STORAGE_VALUES } from "./storage";
+import { ModalsType } from "./modal";
 
 export { STORE_KEYS, STORAGE_KEYS };
 
@@ -20,4 +21,5 @@ export type {
   BeAuthType,
   LoginConfigResponse,
   STORAGE_VALUES,
+  ModalsType,
 };

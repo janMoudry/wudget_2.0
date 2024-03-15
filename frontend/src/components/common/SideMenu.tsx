@@ -69,6 +69,7 @@ const SideMenu = () => {
             <MenuLink {...link} key={link.id} />
           ))}
         </div>
+        
       </div>
     </>
   );

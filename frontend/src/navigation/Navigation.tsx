@@ -16,7 +16,7 @@ const Navigation = () => (
     <Route path="/login" element={<LoginPage />} />
     <Route path="/bankid" element={<BankIdRedirectPage />} />
 
-    <Route path="user/dashboard" element={<DashboarPage />} />
+    <Route path="/user/dashboard" element={<DashboarPage />} />
     <Route path="/user/overview" element={<OverviewPage />} />
     <Route path="/user/accounts" element={<AccountsPage />} />
 
