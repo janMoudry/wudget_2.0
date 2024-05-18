@@ -1,66 +1,68 @@
-import { FC, Fragment, useMemo, useState } from "react";
-import useBooleanState from "./useBooleanState";
+import { useModalContext, useTranslation } from "@providers/index";
 import { ModalsType } from "@types";
+import { FC, useMemo, useState, useEffect } from "react";
 
 interface ModalProps<T> {
-  component: FC<T>;
-  defaultValues?: Omit<T, keyof ModalsType>;
+	component: FC<T>;
+	defaultValues?: Omit<T, keyof ModalsType>;
+	key: string;
 }
 
 interface ModalReturnTypes<T> {
-  trigger: () => void;
-  parseValues: (val: Omit<T, keyof ModalsType>) => void;
-  render: () => JSX.Element;
-  //   promiseTrigger: () => Promise<any>;
+	trigger: () => void;
+	parseValues: (val: Omit<T, keyof ModalsType>) => void;
+	promiseTrigger: () => Promise<unknown>;
 }
 
 const useModal = <T,>({
-  component,
-  defaultValues,
+	component,
+	defaultValues,
+	key,
 }: ModalProps<T>): ModalReturnTypes<T> => {
-  type ComponentParamsExludeFunctionControls = Omit<T, keyof ModalsType>;
+	const { render, remove } = useModalContext();
+	const t = useTranslation();
 
-  const [isOpen, switchOpen] = useBooleanState(false);
-  const [modalValues, setModalValues] =
-    useState<ComponentParamsExludeFunctionControls | null>(
-      defaultValues || null
-    );
-  const [key, setKey] = useState(0);
+	const [isOpen, setIsOpen] = useState(false);
+	const [modalValues, setModalValues] = useState<Omit<
+		T,
+		keyof ModalsType
+	> | null>(defaultValues || null);
 
-  const values = useMemo(() => {
-    return {
-      open: isOpen,
-      onClose: switchOpen,
-      ...modalValues,
-    } as T;
+	const values = useMemo(
+		() => ({
+			...modalValues,
+			open: isOpen,
+			onClose: () => setIsOpen(false),
+			t,
+		}),
+		[isOpen, modalValues, t]
+	);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, modalValues]);
+	useEffect(() => {
+		if (isOpen) {
+			render(key, component, values as T);
+		} else {
+			remove(key);
+		}
 
-  const render = () => {
-    return <Fragment key={key}>{component(values)}</Fragment>;
-  };
+		return () => remove(key);
+	}, [isOpen, key, render, remove, values, component]);
 
-  const trigger = () => {
-    if (!modalValues) throw new Error("Modal values are not set");
+	const trigger = () => {
+		setIsOpen(!isOpen);
+	};
 
-    setKey((prev) => prev + 1);
+	const promiseTrigger = async () => {};
 
-    switchOpen();
-  };
+	const parseValues = (val: Omit<T, keyof ModalsType>) => {
+		setModalValues(val);
+	};
 
-  //   const promiseTrigger = async () => {};
-
-  const parseValues = (val: ComponentParamsExludeFunctionControls) => {
-    setModalValues(val);
-  };
-
-  return {
-    trigger,
-    parseValues,
-    render,
-    // promiseTrigger,
-  };
+	return {
+		trigger,
+		parseValues,
+		promiseTrigger,
+	};
 };
 
 export default useModal;
